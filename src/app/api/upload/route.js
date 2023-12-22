@@ -1,6 +1,9 @@
-import formidable from "formidable";
+// import formidable from "formidable";
+import mongoose from "mongoose";
+import { Upload } from "@/app/models/Upload";
+
 import uniqid from "uniqid";
-import path, { join } from "path";
+import path from "path";
 import { writeFile, fs } from "fs/promises";
 
 export async function POST(req) {
@@ -10,6 +13,8 @@ export async function POST(req) {
   if (!file) {
     return Response.json({ message: 500 });
   }
+
+  mongoose.connect(process.env.MONGO_URL);
 
   const fileName = file.name.split(".")[0];
   const ext = file.name.split(".").slice(-1)[0];
@@ -22,6 +27,8 @@ export async function POST(req) {
   await writeFile(path, buffer);
 
   console.log(file);
+
+  await Upload.create({ image: path });
 
   return Response.json({ message: 200 });
 }
