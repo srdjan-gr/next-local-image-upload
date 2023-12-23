@@ -1,15 +1,15 @@
 import Image from "next/image";
-import test from "../../../public/no-image.png";
 
-const ImageCard = () => {
+const ImageCard = ({ image }) => {
   return (
-    <div className="border-[1px] border-neutral-800 p-4 rounded-xl">
+    <div className="border-[1px] w-[240px] h-[240px] flex items-center border-neutral-800 p-3 rounded-xl">
       <Image
         width={200}
         height={200}
-        src={test}
+        src={image}
         alt="image"
-        className="rounded-lg bg-cover bg-center cursor-pointer"
+        // fill={true}
+        className="rounded-lg cursor-pointer object-contain hover:opacity-80 w-full h-full"
       />
     </div>
   );

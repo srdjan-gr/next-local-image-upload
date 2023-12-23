@@ -28,7 +28,13 @@ export async function POST(req) {
 
   console.log(file);
 
-  await Upload.create({ image: path });
+  await Upload.create({ image: newFileName });
 
   return Response.json({ message: 200 });
+}
+
+// Get all categories
+export async function GET() {
+  mongoose.connect(process.env.MONGO_URL);
+  return Response.json(await Upload.find());
 }

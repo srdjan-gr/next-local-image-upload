@@ -6,10 +6,10 @@ import { IoCloudUploadOutline, IoCloseOutline } from "react-icons/io5";
 import Spinner from "./Spinner";
 import Message from "./Message";
 
-const Upload = () => {
+const Upload = ({ isUploading, setIsUploading }) => {
   const [selectedImage, setSelectedImage] = useState("");
   const [selectedFile, setSelectedFile] = useState("");
-  const [isUploading, setIsUploading] = useState(false);
+  //   const [isUploading, setIsUploading] = useState(false);
   const [messageDiv, setMessageDiv] = useState(false);
   const [messageText, setMessageText] = useState({
     label: "",
@@ -127,6 +127,7 @@ const Upload = () => {
 
           <button
             onClick={(e) => formSubmit(e)}
+            disabled={isUploading}
             className="w-64 p-3 border-[1px] dark:border-neutral-800 rounded-xl cursor-pointer bg-zinc-800/30 hover:bg-zinc-800/20"
           >
             {!isUploading ? "Upload" : <Spinner />}
