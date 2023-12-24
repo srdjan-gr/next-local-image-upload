@@ -1,16 +1,15 @@
 "use client";
 import axios from "axios";
-import Image from "next/image";
 import React, { useEffect, useState } from "react";
-import { IoCloudUploadOutline, IoCloseOutline } from "react-icons/io5";
+import { IoCloudUploadOutline } from "react-icons/io5";
 import Spinner from "./Spinner";
 import Message from "./Message";
+import ImagePreview from "./ImagePreview";
 
 const Upload = ({ isUploading, setIsUploading }) => {
   const [selectedImage, setSelectedImage] = useState("");
   const [selectedFile, setSelectedFile] = useState("");
-  //   const [isUploading, setIsUploading] = useState(false);
-  const [messageDiv, setMessageDiv] = useState(false);
+  const [messageContainer, setMessageContainer] = useState(false);
   const [messageText, setMessageText] = useState({
     label: "",
     messageInfo: "",
@@ -18,10 +17,7 @@ const Upload = ({ isUploading, setIsUploading }) => {
 
   useEffect(() => {
     displayMessage();
-  }, [messageDiv]);
-
-  //   console.log(selectedFile);
-  //   console.log(selectedImage);
+  }, [messageContainer]);
 
   const formSubmit = async (e) => {
     e.preventDefault();
@@ -29,7 +25,7 @@ const Upload = ({ isUploading, setIsUploading }) => {
     try {
       if (!selectedFile) {
         setIsUploading(false);
-        setMessageDiv(true);
+        setMessageContainer(true);
         setMessageText({ label: "danger", messageInfo: "File not selected!" });
         return;
       }
@@ -40,7 +36,7 @@ const Upload = ({ isUploading, setIsUploading }) => {
     } catch (error) {
       setMessageText({ label: "danger", messageInfo: error.response?.data });
     }
-    setMessageDiv(true);
+    setMessageContainer(true);
     setMessageText({
       label: "success",
       messageInfo: "File uploaded successfuly.",
@@ -58,7 +54,7 @@ const Upload = ({ isUploading, setIsUploading }) => {
 
   const displayMessage = () => {
     setTimeout(() => {
-      setMessageDiv(false);
+      setMessageContainer(false);
     }, 3000);
     clearTimeout();
   };
@@ -70,15 +66,15 @@ const Upload = ({ isUploading, setIsUploading }) => {
           Uploaad image to your local folder
         </p>
 
-        {messageDiv && <Message messageText={messageText} />}
+        {messageContainer && <Message messageText={messageText} />}
       </div>
 
       <div className="relative flex items-start before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] z-[-1]"></div>
 
-      <form>
-        <div className="pt-10">
+      <form className="w-full flex justify-center">
+        <div className="pt-10 relative">
           <label
-            className="border-[1px] dark:border-neutral-800 w-64 rounded-xl flex flex-col-reverse items-center justify-center cursor-pointer mb-4 hover:bg-blue-700/5 py-10 text-sm text-zinc-600"
+            className="border-dotted border-[2px] dark:border-neutral-800 w-64 rounded-xl flex flex-col-reverse items-center justify-center cursor-pointer mb-4 hover:bg-blue-700/5 py-10 text-sm text-zinc-600"
             place
           >
             Click to search image
@@ -99,30 +95,13 @@ const Upload = ({ isUploading, setIsUploading }) => {
           </label>
 
           {selectedImage && (
-            <div className="mb-10 p-5 border-[1px] dark:border-neutral-800 rounded-xl relative">
-              <label htmlFor="" className="text-zinc-700 text-xs">
-                Image preview
-              </label>
-
-              <Image
-                src={selectedImage}
-                width={140}
-                height={140}
-                alt="image"
-                className="my-5  border-dashed dark:border-neutral-900 p-3 dark:bg-zinc-800/50 rounded-lg"
-              />
-
-              <p className="text-center p-3 bg-zinc-800/40 rounded-xl text-zinc-400">
-                {selectedFile.name}
-              </p>
-
-              <div
-                className="bg-red-400/60 rounded-full absolute -top-2 -right-2 hover:bg-red-400/80"
-                onClick={closeImagePreview}
-              >
-                <IoCloseOutline className="w-6 h-6 p-1 cursor-pointer" />
-              </div>
-            </div>
+            <ImagePreview
+              selectedImage={selectedImage}
+              selectedFile={selectedFile}
+              setSelectedImage={setSelectedImage}
+              setSelectedFile={setSelectedFile}
+              setIsUploading={setIsUploading}
+            />
           )}
 
           <button

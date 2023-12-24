@@ -8,7 +8,6 @@ const ImageCard = ({ image }) => {
         height={200}
         src={image}
         alt="image"
-        // fill={true}
         className="rounded-lg cursor-pointer object-contain hover:opacity-80 w-full h-full"
       />
     </div>
