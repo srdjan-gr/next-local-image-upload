@@ -6,4 +6,4 @@ Upload image preview.
 
 Design is responsive.
 
-<img src='./public/thumbnail.png' width='600 />
+<img src="./public/thumbnail.png" width='600'>
