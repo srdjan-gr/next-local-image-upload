@@ -16,7 +16,7 @@ const ImagePreview = ({
     setIsUploading(false);
   };
   return (
-    <div className="mb-10 p-5 border-[1px] dark:border-neutral-800 rounded-xl relative md:absolute md:top-10 md:left-1/2 md:translate-x-44 max-h-80 w-56 flex flex-col">
+    <div className="mb-10 p-5 border-[1px] dark:border-neutral-800 rounded-xl relative md:absolute md:top-10 md:left-1/2 md:translate-x-52 max-h-80 w-56 flex flex-col">
       <label className="text-zinc-700 text-xs">Image preview</label>
 
       <Image

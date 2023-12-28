@@ -26,15 +26,26 @@ export async function POST(req) {
   const path = `./public/img/${newFileName}`;
   await writeFile(path, buffer);
 
-  console.log(file);
+  // console.log(file);
 
   await Upload.create({ image: newFileName });
 
   return Response.json({ message: 200 });
 }
 
-// Get all categories
+// Get all images
 export async function GET() {
   mongoose.connect(process.env.MONGO_URL);
   return Response.json(await Upload.find());
+}
+
+// Delete image
+export async function DELETE(req) {
+  const { _id } = await req.json();
+
+  mongoose.connect(process.env.MONGO_URL);
+
+  await Upload.deleteOne({ _id });
+
+  return Response.json(true);
 }

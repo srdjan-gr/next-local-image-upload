@@ -103,6 +103,7 @@ const Upload = ({ isUploading, setIsUploading }) => {
             <IoCloudUploadOutline className="w-12 h-12 mb-2" />
           </label>
 
+          {/* Preview image component */}
           {selectedImage && (
             <ImagePreview
               selectedImage={selectedImage}
