@@ -86,7 +86,7 @@ const Upload = ({ isUploading, setIsUploading }) => {
             place
             {...getRootProps()}
           >
-            Click to search image <br /> or <br /> Drag 'n' drop image here
+            Click to search image <br /> or <br /> Drag&apos;n drop image here
             <input
               type="file"
               name="file"
