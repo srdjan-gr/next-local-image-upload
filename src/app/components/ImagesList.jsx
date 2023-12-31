@@ -51,7 +51,7 @@ const ImagesList = ({ isUploading, setIsUploading }) => {
               key={item._id}
               image={`/img/${item.image}`}
               id={item._id}
-              // setIsUploading={setIsUploading}
+              setIsUploading={setIsUploading}
             />
           );
         })}

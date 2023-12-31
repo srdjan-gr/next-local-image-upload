@@ -81,7 +81,7 @@ const Upload = ({ isUploading, setIsUploading }) => {
         <div className="pt-10 flex flex-col justify-center items-center w-full relative">
           <label
             className={`${
-              isDragActive && "dark:border-blue-700/50"
+              isDragActive && "dark:border-blue-700/40"
             } border-dotted border-[2px] dark:border-neutral-800 w-full md:w-80 rounded-xl flex flex-col-reverse items-center justify-center cursor-pointer mb-4 hover:bg-blue-700/5 py-10 text-sm text-zinc-600 text-center`}
             place
             {...getRootProps()}
