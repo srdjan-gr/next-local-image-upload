@@ -6,4 +6,6 @@ Upload image preview.
 
 Design is responsive.
 
+DEMO: https://local-image-upload.vercel.app/
+
 <img src="./public/thumbnail.png" width='600'>
