@@ -49,7 +49,8 @@ const ImagesList = ({ isUploading, setIsUploading }) => {
           return (
             <ImageCard
               key={item._id}
-              image={`/img/${item.image}`}s
+              image={`/img/${item.image}`}
+              imageName={item.image}
               id={item._id}
               setIsUploading={setIsUploading}
             />

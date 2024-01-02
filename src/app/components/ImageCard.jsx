@@ -2,7 +2,7 @@ import Image from "next/image";
 import { IoTrashBinOutline } from "react-icons/io5";
 import axios from "axios";
 
-const ImageCard = ({ image, id, setIsUploading }) => {
+const ImageCard = ({ image, id, setIsUploading, imageName }) => {
   const deleteImage = async (id) => {
     // const resoult = confirm(`Are you sure you wan to delete image?`);
 
@@ -25,7 +25,7 @@ const ImageCard = ({ image, id, setIsUploading }) => {
         width={200}
         height={200}
         src={image}
-        alt="image"
+        alt={imageName}
         className="rounded-lg cursor-pointer object-contain hover:opacity-80 w-full h-full"
       />
 
